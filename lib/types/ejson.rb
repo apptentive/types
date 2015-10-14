@@ -22,10 +22,6 @@ class Object
     self
   end
 
-  def self.is_ejson?(json)
-    false
-  end
-
   def self.from_ejson(json)
     json
   end
@@ -38,17 +34,13 @@ class Array
 
   def from_ejson!
     each.with_index do |val, idx|
-      if val.is_a?(Hash) && (type = Hash.is_ejson?(val))
+      if (type = Hash.ejson_type(val))
         self[idx] = type.from_ejson(val)
       else
         val.from_ejson!
       end
     end
     self
-  end
-
-  def self.is_ejson?(json)
-    json.any? { |el| el.class.is_ejson?(el) }
   end
 
   def self.from_ejson(ejson)
@@ -64,7 +56,7 @@ class Hash
   def from_ejson!
     keys.each do |key|
       val = self[key]
-      if val.is_a?(Hash) && (type = Hash.is_ejson?(val))
+      if (type = Hash.ejson_type(val))
         self[key] = type.from_ejson(val)
       else
         val.from_ejson!
@@ -73,12 +65,12 @@ class Hash
     self
   end
 
-  def self.is_ejson?(json)
+  def self.ejson_type(json)
     json.is_a?(Hash) && EJSON::TYPES.detect { |type| type.is_ejson?(json) }
   end
 
   def self.from_ejson(ejson)
-    if (type = is_ejson?(ejson))
+    if (type = ejson_type(ejson))
       type.from_ejson(ejson)
     else
       ejson.map { |key, val| [ key, val.class.from_ejson(val) ] }.to_h

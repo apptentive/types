@@ -33,8 +33,8 @@ describe EJSON do
       expect(subject.from_ejson!).to eq subject
     end
 
-    it ".is_ejson?" do
-      expect(described_class.is_ejson?({})).to eq false
+    it ".from_ejson" do
+      expect(described_class.from_ejson(42)).to eq 42
     end
   end
 
@@ -47,11 +47,6 @@ describe EJSON do
 
     it "#from_ejson!" do
       expect(subject.as_ejson.from_ejson!).to eq subject
-    end
-
-    it ".is_ejson?" do
-      expect(described_class.is_ejson?(subject.as_ejson)).to eq true
-      expect(described_class.is_ejson?(foo: 42)).to eq false
     end
 
     it ".from_ejson" do
@@ -70,8 +65,9 @@ describe EJSON do
       expect(subject.as_ejson.from_ejson!).to eq subject
     end
 
-    it ".is_ejson?" do
-      expect(described_class.is_ejson?(subject.as_ejson)).to be_falsy
+    it ".ejson_type" do
+      expect(described_class.ejson_type(Time.now.as_ejson)).to be Time
+      expect(described_class.ejson_type(EJSON::ObjectId.new.as_ejson)).to be EJSON::ObjectId
     end
 
     it ".from_ejson" do

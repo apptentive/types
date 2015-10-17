@@ -25,7 +25,7 @@ if defined?(EJSON::ObjectId)
     end
 
     def self.from_ejson(ejson)
-      BSON::ObjectId.from_string(ejson['$oid'])
+      from_string(ejson['$oid'])
     end
   end
 end

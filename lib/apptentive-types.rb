@@ -6,6 +6,5 @@ require "types/time"
 require "types/regexp"
 
 # Apptentive types
-module Apptentive ; end
 require "types/timestamp"
 require "types/version"

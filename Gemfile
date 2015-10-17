@@ -1,7 +1,7 @@
-source 'https://rubygems.org/'
+source "https://rubygems.org/"
 gemspec
 
 group :test do
-  gem 'bson'
-  gem 'rspec'
+  gem "bson"
+  gem "rspec"
 end

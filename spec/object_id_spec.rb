@@ -1,5 +1,4 @@
 require "spec_helper"
-require "bson"
 require "types/object_id"
 
 describe EJSON::ObjectId do

@@ -1,19 +1,21 @@
 require "spec_helper"
 require "types/ejson"
+require "types/timestamp"
+require "types/version"
 
 describe EJSON do
   it "EJSON::TYPES" do
-    expect(EJSON::TYPES).to match_array [Time, Regexp, BSON::ObjectId]
+    expect(EJSON::TYPES).to match_array [Apptentive::Timestamp, Apptentive::Version, Time, Regexp, EJSON::ObjectId]
   end
 
   context ".parse" do
     it "with String" do
-      id = BSON::ObjectId.new
+      id = EJSON::ObjectId.new
       expect( EJSON.parse("{\"id\":{\"$oid\":\"#{id.to_s}\"}}") ).to eq('id' => id)
     end
 
     it "with Hash" do
-      id = BSON::ObjectId.new
+      id = EJSON::ObjectId.new
       expect( EJSON.parse('id' => { '$oid' => id.to_s }) ).to eq('id' => id)
     end
   end
@@ -39,7 +41,7 @@ describe EJSON do
   end
 
   describe Array do
-    subject { [ BSON::ObjectId.new, Time.now.round, 42 ] }
+    subject { [ EJSON::ObjectId.new, Time.now.round, 42 ] }
 
     it "#as_ejson" do
       expect(subject.as_ejson).to eq([ subject[0].as_ejson, subject[1].as_ejson, 42 ])

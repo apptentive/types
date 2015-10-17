@@ -5,7 +5,7 @@ describe Time do
   subject { Time.now }
 
   it "#as_ejson" do
-    expect(subject.as_ejson).to eq('$date' => subject.iso8601)
+    expect(subject.as_ejson).to eq("$date" => subject.iso8601)
   end
 
   it ".is_ejson?" do

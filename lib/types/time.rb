@@ -1,18 +1,17 @@
 require "types/ejson"
 
-# see http://docs.mongodb.org/manual/reference/mongodb-extended-json/#date
 class Time
   EJSON::TYPES << self
 
-  def as_ejson
-    { '$date' => utc.iso8601 }
+  def as_json(*)
+    { _type: "datetime", sec: to_f }.as_json
   end
 
   def self.is_ejson?(json)
-    json.keys == %w($date)
+    json["_type"] == "datetime"
   end
 
   def self.from_ejson(ejson)
-    Time.parse(ejson['$date'])
+    Time.at(ejson["sec"])
   end
 end

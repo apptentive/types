@@ -1,11 +1,10 @@
 require "spec_helper"
 require "types/ejson"
-require "types/timestamp"
 require "types/version"
 
 describe EJSON do
   it "EJSON::TYPES" do
-    expect(EJSON::TYPES).to match_array [Apptentive::Timestamp, Apptentive::Version, Time, Regexp, EJSON::ObjectId]
+    expect(EJSON::TYPES).to match_array [Apptentive::Duration, Apptentive::Version, Time, Regexp, EJSON::ObjectId]
   end
 
   context ".parse" do

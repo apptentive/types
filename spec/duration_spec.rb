@@ -1,11 +1,11 @@
 require "spec_helper"
-require "types/time"
+require "types/duration"
 
-describe Time do
-  subject { Time.at(Time.now.to_f) }
+describe Apptentive::Duration do
+  subject { described_class.new(60*60) }
 
   it "#as_ejson" do
-    expect(subject.as_ejson).to eq("_type" => "datetime", "sec" => subject.to_f)
+    expect(subject.as_ejson).to eq("_type" => "duration", "sec" => subject.to_f)
   end
 
   it ".is_ejson?" do

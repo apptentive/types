@@ -1,5 +1,4 @@
 require "spec_helper"
-require "types/ejson"
 require "types/version"
 
 RSpec.describe Apptentive::Version do

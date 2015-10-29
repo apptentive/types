@@ -19,7 +19,7 @@ module Apptentive
 
     # (E)JSON serialization
     def as_json(*)
-      { _type: "version", code: @code.join(".") }.as_json
+      { _type: "version", version: @code.join(".") }.as_json
     end
 
     def self.is_ejson?(json)
@@ -27,10 +27,10 @@ module Apptentive
     end
 
     def self.from_ejson(ejson)
-      unless ejson.keys.sort == %w(_type code)
+      unless ejson.keys.sort == %w(_type version)
         raise ArgumentError, "Invalid Version json: #{ejson.inspect}"
       end
-      new(ejson["code"])
+      new(ejson["version"])
     end
 
     # MongoDB serialization

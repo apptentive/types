@@ -1,3 +1,3 @@
-$:.unshift __dir__+'/lib'
-require 'bundler/setup'
-require 'rspec'
+$:.unshift __dir__ + "/lib"
+require "bundler/setup"
+require "rspec"

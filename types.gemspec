@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.summary = "Apptentive complex types"
   s.description = "Provides custom Apptentive types and serialization"
   s.authors = ["Steve Sloan", "Joel Stimson"]
-  s.email = ["joel@apptentive.com", "engineering@apptentive.com"]
+  s.email = ["joel@apptentive.com", "m@saffitz.com"]
   s.license = "Proprietary"
   s.homepage = "http://github.com/apptentive/types"
   s.require_paths = ["lib"]

@@ -3,11 +3,10 @@ Gem::Specification.new do |s|
   s.version = "0.0.1"
   s.summary = "Apptentive complex types"
   s.description = "Provides custom Apptentive types and serialization"
-  s.authors = ["Steve Sloan"]
-  s.email = ["steve@apptentive.com"]
+  s.authors = ["Steve Sloan", "Joel Stimson"]
+  s.email = ["joel@apptentive.com", "m@saffitz.com"]
   s.license = "Proprietary"
   s.homepage = "http://github.com/apptentive/types"
-  s.has_rdoc = false
   s.require_paths = ["lib"]
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")

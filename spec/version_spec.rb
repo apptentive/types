@@ -15,6 +15,20 @@ RSpec.describe Apptentive::Version do
           end
         end
       end
+
+      context "when the version is invalid" do
+        [
+          "my_version",
+          "1.2.",
+          "1.2-test",
+          ".0",
+          "1.2.3\nhello"
+        ].each do |ver, code|
+          it "(#{ver}) raises and exception" do
+            expect { Apptentive::Version.new(ver) }.to raise_error(ArgumentError, "Invalid Version: '#{ver}'")
+          end
+        end
+      end
     end
   end
 

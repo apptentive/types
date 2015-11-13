@@ -13,13 +13,18 @@ module Apptentive
       end
     end
 
+    def to_s
+      code.join(".")
+    end
+    alias_method :inspect, :to_s
+
     def <=>(that)
       code <=> (that.respond_to?(:code) ? that.code : that)
     end
 
     # (E)JSON serialization
     def as_json(*)
-      { _type: "version", version: @code.join(".") }.as_json
+      { _type: "version", version: to_s }.as_json
     end
 
     def self.is_ejson?(json)

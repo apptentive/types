@@ -6,5 +6,4 @@ require "types/regexp"
 
 # Apptentive types
 require "types/time"
-require "types/duration"
 require "types/version"

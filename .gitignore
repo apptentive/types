@@ -1,1 +1,7 @@
+.bundle/
+.DS_Store
+.idea/
+.ruby-version
+binstubs/
 Gemfile.lock
+vendor/

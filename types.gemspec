@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.name = "apptentive-types"
-  s.version = "0.0.1"
+  s.version = "0.1.0"
   s.summary = "Apptentive complex types"
   s.description = "Provides custom Apptentive types and serialization"
-  s.authors = ["Steve Sloan", "Joel Stimson"]
+  s.authors = ["Joel Stimson", "John Fearnside", "Steve Sloan"]
   s.email = ["joel@apptentive.com", "m@saffitz.com"]
   s.license = "Proprietary"
   s.homepage = "http://github.com/apptentive/types"
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")
 
-  s.add_dependency "activesupport", "~> 3.2.22"
+  s.add_dependency "activesupport", ">= 3.2.22"
   s.add_dependency "json"
 
   s.add_development_dependency "rspec"

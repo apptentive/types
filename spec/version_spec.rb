@@ -4,10 +4,11 @@ require "types/version"
 RSpec.describe Apptentive::Version do
   describe "new version" do
     describe "validation" do
-      context "when the version is a decimal-separated list of integers" do
+      context "when the version is a decimal-separated list of integers or a fixnum" do
         {
           "1.2.3" => [1, 2, 3],
-          "60000" => [60000]
+          "60000" => [60000],
+          1 => [1]
         }.each do |ver, code|
           it "successfully sets up the object" do
             version = Apptentive::Version.new(ver)

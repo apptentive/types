@@ -6,7 +6,7 @@ module Apptentive
     attr_accessor :code
 
     def initialize(code)
-      if /\A(?<ver>\d+(\.\d+)*)\z/ =~ code
+      if /\A(?<ver>\d+(\.\d+)*)\z/ =~ code.to_s
         @code = ver.split(".").map(&:to_i)
       else
         raise ArgumentError, "Invalid Version: '#{code}'"

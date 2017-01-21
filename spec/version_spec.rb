@@ -40,4 +40,42 @@ RSpec.describe Apptentive::Version do
       expect(version.as_ejson).to eq({ _type: "version", version: "1.2.3" }.as_json)
     end
   end
+
+  describe "supports equality checks" do
+    it "recognizes equal values" do
+      v1 = Apptentive::Version.new("1.2.3")
+      v2 = Apptentive::Version.new("1.2.3")
+      expect(v1 == v2).to eq(true)
+      expect(v1.eq?(v2)).to eq(true)
+
+      # Test equality using only an input String
+      expect(v1 == "1.2.3").to eq(false)
+      expect(v1 == [1,2,3]).to eq(true)
+    end
+
+    it "recognizes unequal values" do
+      v1 = Apptentive::Version.new("1.2.3")
+      v2 = Apptentive::Version.new("1.2.4")
+      expect(v1 == v2).to eq(false)
+      expect(v1 != v2).to eq(true)
+      expect(v1.eq?(v2)).to eq(false)
+    end
+  end
+
+  describe "supports hash" do
+    it "instances can be used as keys for Hashes" do
+      v1 = Apptentive::Version.new("1.2.3")
+      v2 = Apptentive::Version.new("1.2.1")
+      hash = { v1 => "bar", v2 => "foo" }
+
+      expect(hash[v1]).to eq("bar")
+      expect(hash.sort).to eq([[v2, "foo"], [v1, "bar"]])
+    end
+
+    it "generates duplicate hash values for instance with the same contents" do
+      v1 = Apptentive::Version.new("1.2.3")
+      v2 = Apptentive::Version.new("1.2.3")
+      expect(v1.hash).to eq(v2.hash)
+    end
+  end
 end

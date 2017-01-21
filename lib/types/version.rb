@@ -1,3 +1,5 @@
+require "types/ejson"
+
 module Apptentive
   class Version
     include Comparable
@@ -20,6 +22,15 @@ module Apptentive
 
     def <=>(that)
       code <=> (that.respond_to?(:code) ? that.code : that)
+    end
+
+    def ==(that)
+      code == (that.respond_to?(:code) ? that.code : that)
+    end
+    alias eq? ==
+
+    def hash
+      code.hash
     end
 
     # (E)JSON serialization

@@ -25,7 +25,7 @@ module Apptentive
     end
 
     def ==(that)
-      code == (that.respond_to?(:code) ? that.code : that)
+      (self <=> that) == 0
     end
     alias eq? ==
 

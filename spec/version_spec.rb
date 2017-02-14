@@ -67,6 +67,13 @@ RSpec.describe Apptentive::Version do
         expect(Apptentive::Version.valid?(version)).to be false
       end
     end
+
+    it "returns false on nil" do
+      expect(Apptentive::Version.valid?(nil)).to be false
+    end
+    it "returns false on empty string" do
+      expect(Apptentive::Version.valid?("")).to be false
+    end
   end
 
   describe "#as_ejson" do

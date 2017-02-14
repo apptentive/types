@@ -33,6 +33,42 @@ RSpec.describe Apptentive::Version do
     end
   end
 
+  describe "#valid?" do
+    it "returns true for valid strings" do
+      property_of {
+        len = integer(1..9)
+        deflating = Deflating.new(array(len) { integer(0..300) })
+        deflating.array.join(".")
+      }.check do |version|
+        expect(Apptentive::Version.valid?(version)).to be true
+      end
+    end
+
+    it "returns false for trailing/leading dot" do
+      property_of {
+        len = integer(1..9)
+        deflating = Deflating.new(array(len) { integer(0..300) })
+        leading = boolean
+        leading ? "." + deflating.array.join(".") : deflating.array.join(".") + "."
+      }.check(50) do |version|
+        expect(Apptentive::Version.valid?(version)).to be false
+      end
+    end
+
+    it "returns false when string contains alphabet" do
+      property_of {
+        len = integer(3..9)
+        deflating = Deflating.new (array(len) {
+          version = string(:alnum)
+          guard version.match(/[[:alpha:]]/)
+        })
+        deflating.array.join(".")
+      }.check(20) do |version|
+        expect(Apptentive::Version.valid?(version)).to be false
+      end
+    end
+  end
+
   describe "#as_ejson" do
     let(:version) { Apptentive::Version.new("1.2.3") }
 

@@ -1,3 +1,5 @@
 $:.unshift __dir__ + "/lib"
 require "bundler/setup"
 require "rspec"
+require "rantly/rspec_extensions"
+require "rantly/shrinks"

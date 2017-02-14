@@ -4,12 +4,17 @@ module Apptentive
   class Version
     include Comparable
     EJSON::TYPES << self
+    VERSION_REGEX = /\A(\d+(\.\d+)*)\z/.freeze
 
     attr_accessor :code
 
+    def self.valid?(code)
+      (VERSION_REGEX =~ code.to_s).present?
+    end
+
     def initialize(code)
-      if /\A(?<ver>\d+(\.\d+)*)\z/ =~ code.to_s
-        @code = ver.split(".").map(&:to_i)
+      if VERSION_REGEX =~ code.to_s
+        @code = code.to_s.split(".").map(&:to_i)
       else
         raise ArgumentError, "Invalid Version: '#{code}'"
       end

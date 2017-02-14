@@ -4,7 +4,7 @@ module Apptentive
   class Version
     include Comparable
     EJSON::TYPES << self
-    VERSION_REGEX = /\A(\d+(\.\d+)*)\z/
+    VERSION_REGEX = /\A(\d+(\.\d+)*)\z/.freeze
 
     attr_accessor :code
 

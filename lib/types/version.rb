@@ -5,6 +5,8 @@ module Apptentive
     include Comparable
     EJSON::TYPES << self
     VERSION_REGEX = /\A(\d+(\.\d+)*)\z/.freeze
+    # A hash (embedded document) is type 0x03 in the BSON spec.
+    BSON_TYPE = 3.chr.force_encoding(BSON::BINARY).freeze
 
     attr_accessor :code
 
@@ -54,9 +56,12 @@ module Apptentive
       new(ejson["version"])
     end
 
-    # MongoDB serialization
-    def __bson_dump__(*args)
-      as_json.__bson_dump__(*args)
+    def bson_type
+      BSON_TYPE
+    end
+
+    def to_bson(encoded = "".force_encoding(BINARY))
+      as_json.to_bson(encoded)
     end
   end
 end

@@ -1,4 +1,5 @@
 require "types/ejson"
+require "bson"
 
 module Apptentive
   class Version

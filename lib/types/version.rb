@@ -61,8 +61,8 @@ module Apptentive
       BSON_TYPE
     end
 
-    def to_bson(encoded = "".force_encoding(BINARY))
-      as_json.to_bson(encoded)
+    def to_bson(*)
+      as_json.to_bson
     end
   end
 end

@@ -121,4 +121,10 @@ RSpec.describe Apptentive::Version do
       expect(v1.hash).to eq(v2.hash)
     end
   end
+
+  describe "#to_bson" do
+    it "does not error" do
+      expect { Apptentive::Version.new("1.2.3").to_bson }.not_to raise_error
+    end
+  end
 end

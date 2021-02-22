@@ -61,8 +61,8 @@ module Apptentive
       BSON_TYPE
     end
 
-    def to_bson(*)
-      as_json.to_bson
+    def to_bson(buffer = BSON::ByteBuffer.new, validating_keys = BSON::Config.validating_keys?)
+      buffer.put_hash(as_json, validating_keys)
     end
   end
 end

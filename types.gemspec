@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "apptentive-types"
-  s.version = "1.0.0"
+  s.version = "1.0.1"
   s.summary = "Apptentive complex types"
   s.description = "Provides custom Apptentive types and serialization"
   s.authors = ["Joel Stimson", "John Fearnside", "Steve Sloan"]

@@ -12,6 +12,6 @@ class Time
   end
 
   def self.from_ejson(ejson)
-    Time.at(ejson["sec"])
+    Time.at(ejson["sec"].to_f)
   end
 end
